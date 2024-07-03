@@ -2505,6 +2505,7 @@ DltReturnValue dlt_buffer_free_static(DltBuffer *buf)
 
 DltReturnValue dlt_buffer_free_dynamic(DltBuffer *buf)
 {
+    printf("%s called will sleep\n", __FUNCTION__);
     /* catch null pointer */
     if (buf == NULL)
         return DLT_RETURN_WRONG_PARAMETER;
@@ -2518,6 +2519,9 @@ DltReturnValue dlt_buffer_free_dynamic(DltBuffer *buf)
     free(buf->shm);
     buf->shm = NULL;
     buf->mem = NULL;
+
+    sleep(3);
+    printf("%s called done sleep\n", __FUNCTION__);
 
     return DLT_RETURN_OK;
 }
@@ -2739,6 +2743,7 @@ int dlt_buffer_push3(DltBuffer *buf,
                      const unsigned char *data3,
                      unsigned int size3)
 {
+    printf("%s called\n", __FUNCTION__);
     int free_size;
     int write, read, count;
     DltBufferBlockHead head;
@@ -2752,6 +2757,9 @@ int dlt_buffer_push3(DltBuffer *buf,
         dlt_vlog(LOG_ERR, "%s: Buffer: Buffer not initialized\n", __func__);
         return DLT_RETURN_ERROR; /* ERROR */
     }
+
+    sleep(1);
+    printf("Wake up to log\n");
 
     /* get current write pointer */
     write = ((int *)(buf->shm))[0];

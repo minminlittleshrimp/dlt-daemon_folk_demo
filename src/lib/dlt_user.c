@@ -909,6 +909,7 @@ DltReturnValue dlt_init_common(void)
 
 void dlt_user_atexit_handler(void)
 {
+    printf("%s called\n", __FUNCTION__);
     /* parent will do clean-up */
     if (g_dlt_is_child)
         return;
@@ -937,7 +938,7 @@ void dlt_user_atexit_handler(void)
 
 int dlt_user_atexit_blow_out_user_buffer(void)
 {
-
+    printf("%s called\n", __FUNCTION__);
     int count, ret;
     struct timespec ts;
 
@@ -1000,6 +1001,7 @@ static void dlt_user_free_buffer(unsigned char **buffer)
 
 DltReturnValue dlt_free(void)
 {
+    printf("%s called\n", __FUNCTION__);
     uint32_t i;
     int ret = 0;
     int expected = 0;
@@ -1554,6 +1556,7 @@ DltReturnValue dlt_register_context_llccb(DltContext *handle,
  * still data in startup_buffer. atexit_handler will free the appIDs */
 DltReturnValue dlt_unregister_app_util(bool force_sending_messages)
 {
+    printf("%s called\n", __FUNCTION__);
     DltReturnValue ret = DLT_RETURN_OK;
 
     /* forbid dlt usage in child after fork */
@@ -1818,6 +1821,7 @@ DltReturnValue dlt_user_log_write_start_internal(DltContext *handle,
                                            uint32_t messageid,
                                            bool is_verbose)
 {
+    printf("%s called\n", __FUNCTION__);
     int ret = DLT_RETURN_TRUE;
 
     /* check nullpointer */
